@@ -3,6 +3,8 @@ package collections;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueueTests {
@@ -70,10 +72,10 @@ class QueueTests {
   @Nested
   class Dequeue {
     @Test
-    void returnsNullWhileEmpty() {
+    void throwsWhileEmpty() {
       Queue queue = new Queue<Integer>(10);
 
-      assertNull(queue.dequeue());
+      assertThrows(NoSuchElementException.class, queue::dequeue);
     }
 
     @Test

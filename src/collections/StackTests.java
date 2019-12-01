@@ -3,6 +3,8 @@ package collections;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StackTests {
@@ -68,12 +70,12 @@ class StackTests {
   }
 
   @Nested
-  class Dequeue {
+  class Pop {
     @Test
-    void returnsNullWhileEmpty() {
+    void throwsWhileEmpty() {
       Stack stack = new Stack<Integer>(10);
 
-      assertNull(stack.pop());
+      assertThrows(NoSuchElementException.class, stack::pop);
     }
 
     @Test

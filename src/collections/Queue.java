@@ -2,6 +2,7 @@ package collections;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Queue<T> implements Iterable<T> {
   private int size;
@@ -38,10 +39,12 @@ public class Queue<T> implements Iterable<T> {
   }
 
   private T dequeueItem() {
-    if (size == 0) return null;
+    if (size == 0) {
+      throw new NoSuchElementException();
+    }
 
-    T item = arr[size - 1];
-    arr[size - 1] = null;
+    T item = arr[--size];
+    arr[size] = null;
     return item;
   }
 

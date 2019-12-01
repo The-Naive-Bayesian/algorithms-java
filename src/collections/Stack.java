@@ -2,6 +2,7 @@ package collections;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Stack<T> implements Iterable<T> {
   private int size;
@@ -26,8 +27,6 @@ public class Stack<T> implements Iterable<T> {
   }
 
   public T pop() {
-    if (size == 0) return null;
-
     T item = popItem();
 
     if(size < getCapacity() / 4) {
@@ -38,8 +37,12 @@ public class Stack<T> implements Iterable<T> {
   }
 
   private T popItem() {
-    T item = arr[size - 1];
-    size--;
+    if (size == 0) {
+      throw new NoSuchElementException();
+    }
+
+    T item = arr[--size];
+    arr[size] = null;
     return item;
   }
 
