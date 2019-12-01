@@ -8,6 +8,7 @@ public class Stack<T> implements Iterable<T> {
   private T[] arr;
 
   public Stack(int initialCapacity) {
+    if (initialCapacity <= 0) throw new IllegalArgumentException("Cannot have initial capacity less than one");
     size = 0;
     arr = (T[]) new Object[initialCapacity];
   }
@@ -25,6 +26,8 @@ public class Stack<T> implements Iterable<T> {
   }
 
   public T pop() {
+    if (size == 0) return null;
+
     T item = popItem();
 
     if(size < getCapacity() / 3) {
