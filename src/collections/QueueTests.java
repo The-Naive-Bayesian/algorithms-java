@@ -1,10 +1,129 @@
 package collections;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class QueueTests {
-  @Test
-  void constructor() {
-    new Queue<Integer>(10);
+  @Nested
+  class Constructor {
+    @Test
+    void constructor() {
+      new Queue<Integer>(10);
+    }
+
+    @Test
+    void constructorThrowsForZeroInitialCapacity() {
+      assertThrows(
+          IllegalArgumentException.class,
+          () -> new Queue<Integer>(0)
+      );
+    }
+
+    @Test
+    void constructorThrowsForNegativeInitialCapacity() {
+      assertThrows(
+          IllegalArgumentException.class,
+          () -> new Queue<Integer>(-1)
+      );
+    }
+
+    @Test
+    void initialSizeIsZero() {
+      Queue queue = new Queue<Integer>(10);
+
+      assertEquals(0, queue.size());
+    }
+  }
+
+  @Nested
+  class Enqueue {
+    @Test
+    void enqueueDoesntThrow() {
+      Queue queue = new Queue<Integer>(10);
+
+      queue.enqueue(1);
+    }
+
+    @Test
+    void enqueueIncreasesSize() {
+      Queue queue = new Queue<Integer>(10);
+
+      queue.enqueue(1);
+      assertEquals(1, queue.size());
+      queue.enqueue(1);
+      assertEquals(2, queue.size());
+    }
+
+    @Test
+    void enqueueWorksAboveInitialCapacity() {
+      Queue queue = new Queue<Integer>(1);
+
+      queue.enqueue(1);
+      assertEquals(1, queue.size());
+      queue.enqueue(1);
+      assertEquals(2, queue.size());
+    }
+  }
+
+  @Nested
+  class Dequeue {
+    @Test
+    void returnsNullWhileEmpty() {
+      Queue queue = new Queue<Integer>(10);
+
+      assertNull(queue.dequeue());
+    }
+
+    @Test
+    void returnsFirstAddedValue() {
+      Queue queue = new Queue<Integer>(10);
+      queue.enqueue(1);
+      queue.enqueue(2);
+
+      assertEquals(1, queue.dequeue());
+    }
+
+    @Test
+    void increasesSize() {
+      Queue queue = new Queue<Integer>(10);
+
+      queue.enqueue(1);
+      assertEquals(1, queue.size());
+      queue.enqueue(1);
+      assertEquals(2, queue.size());
+    }
+
+    @Test
+    void worksWhenEmptyingQueue() {
+      Queue queue = new Queue<Integer>(1);
+
+      for (int i = 0; i < 6; i++) {
+        queue.enqueue(i);
+      }
+
+      for (int i = 0; i < 6; i++) {
+        queue.dequeue();
+      }
+    }
+  }
+
+  @Nested
+  class IsEmpty {
+    @Test
+    void returnsTrueWhenEmpty() {
+      Queue queue = new Queue<Integer>(1);
+
+      assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    void returnsFalseWhenNotEmpty() {
+      Queue queue = new Queue<Integer>(1);
+      queue.enqueue(0);
+
+      assertFalse(queue.isEmpty());
+    }
   }
 }

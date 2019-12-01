@@ -8,6 +8,7 @@ public class Queue<T> implements Iterable<T> {
   private T[] arr;
 
   public Queue(int initialCapacity) {
+    if (initialCapacity <= 0) throw new IllegalArgumentException("Cannot have initial capacity less than one");
     size = 0;
     arr = (T[]) new Object[initialCapacity];
   }
@@ -37,6 +38,8 @@ public class Queue<T> implements Iterable<T> {
   }
 
   private T dequeueItem() {
+    if (size == 0) return null;
+
     T item = arr[size - 1];
     arr[size - 1] = null;
     return item;
