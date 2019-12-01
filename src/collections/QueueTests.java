@@ -129,4 +129,26 @@ class QueueTests {
       assertFalse(queue.isEmpty());
     }
   }
+
+
+  @Nested
+  class Iterator {
+    @Test
+    void allowsForEach() {
+      Queue<Integer> queue = new Queue<>(10);
+
+      Integer[] expectedValues = new Integer[8];
+      for (int i = 0; i < 8; i++) {
+        queue.enqueue(i);
+        expectedValues[i] = i;
+      }
+
+      int index = 0;
+      for (Integer number : queue) {
+        assertEquals(expectedValues[index++], number);
+      }
+
+      assertEquals(8, index, "At least one item in queue wasn't iterated through");
+    }
+  }
 }

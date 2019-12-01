@@ -68,8 +68,23 @@ public class Queue<T> implements Iterable<T> {
     return size;
   }
 
-  @Override
   public Iterator<T> iterator() {
-    return null;
+    return new FifoIterator();
+  }
+
+  private class FifoIterator implements Iterator<T> {
+    int index = size - 1;
+
+    public boolean hasNext() {
+      return index >= 0;
+    }
+
+    public T next() {
+      return arr[index--];
+    }
+
+    public void remove() {
+      throw new UnsupportedOperationException();
+    }
   }
 }
