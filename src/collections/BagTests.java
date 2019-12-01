@@ -105,6 +105,10 @@ class BagTests {
         }
         seen[number] = true;
       }
+
+      for (boolean viewed : seen) {
+        assertTrue(viewed, "At least one item in bag wasn't returned");
+      }
     }
   }
 }

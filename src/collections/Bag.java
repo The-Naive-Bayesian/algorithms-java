@@ -47,14 +47,14 @@ public class Bag<T> implements Iterable<T> {
   }
 
   private class BagIterator implements Iterator<T> {
-    private int index = size - 1;
+    private int index = 0;
 
     public boolean hasNext() {
-      return index > 0;
+      return index < size;
     }
 
     public T next() {
-      return arr[index--];
+      return arr[index++];
     }
 
     public void remove() {
