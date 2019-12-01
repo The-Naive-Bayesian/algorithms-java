@@ -129,4 +129,25 @@ class StackTests {
       assertFalse(stack.isEmpty());
     }
   }
+
+  @Nested
+  class Iterator {
+    @Test
+    void allowsForEach() {
+      Stack<Integer> stack = new Stack<>(10);
+
+      Integer[] expectedValues = new Integer[8];
+      for (int i = 0; i < 8; i++) {
+        stack.push(i);
+        expectedValues[7 - i] = i;
+      }
+
+      int index = 0;
+      for (Integer number : stack) {
+        assertEquals(expectedValues[index++], number);
+      }
+
+      assertEquals(8, index, "At least one item in stack wasn't iterated through");
+    }
+  }
 }

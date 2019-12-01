@@ -66,8 +66,26 @@ public class Stack<T> implements Iterable<T> {
     return size;
   }
 
-  @Override
   public Iterator<T> iterator() {
-    return null;
+    return new LifoIterator();
+  }
+
+  private class LifoIterator implements Iterator<T> {
+    private int index = size - 1;
+
+    @Override
+    public boolean hasNext() {
+      return index >= 0;
+    }
+
+    @Override
+    public T next() {
+      return arr[index--];
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException();
+    }
   }
 }

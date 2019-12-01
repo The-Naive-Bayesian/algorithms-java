@@ -130,7 +130,6 @@ class QueueTests {
     }
   }
 
-
   @Nested
   class Iterator {
     @Test
