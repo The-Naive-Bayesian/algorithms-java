@@ -30,7 +30,7 @@ public class Queue<T> implements Iterable<T> {
   public T dequeue() {
     T item = dequeueItem();
 
-    if (size < getCapacity() / 3) {
+    if (size < getCapacity() / 4) {
       halveCapacity();
     }
 

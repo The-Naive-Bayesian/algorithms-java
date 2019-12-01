@@ -99,11 +99,12 @@ class QueueTests {
     void worksWhenEmptyingQueue() {
       Queue queue = new Queue<Integer>(1);
 
-      for (int i = 0; i < 6; i++) {
+      int maxSize = 8;
+      for (int i = 0; i < maxSize; i++) {
         queue.enqueue(i);
       }
 
-      for (int i = 0; i < 6; i++) {
+      for (int i = 0; i < maxSize; i++) {
         queue.dequeue();
       }
     }

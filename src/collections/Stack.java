@@ -30,7 +30,7 @@ public class Stack<T> implements Iterable<T> {
 
     T item = popItem();
 
-    if(size < getCapacity() / 3) {
+    if(size < getCapacity() / 4) {
       halveCapacity();
     }
 

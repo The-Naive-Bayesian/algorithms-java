@@ -99,11 +99,12 @@ class StackTests {
     void worksWhenEmptyingStack() {
       Stack stack = new Stack<Integer>(1);
 
-      for (int i = 0; i < 6; i++) {
+      int maxSize = 8;
+      for (int i = 0; i < maxSize; i++) {
         stack.push(i);
       }
 
-      for (int i = 0; i < 6; i++) {
+      for (int i = 0; i < maxSize; i++) {
         stack.pop();
       }
     }
