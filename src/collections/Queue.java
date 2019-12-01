@@ -5,33 +5,38 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Queue<T> implements Iterable<T> {
+  private int head;
   private int size;
   private T[] arr;
 
   public Queue(int initialCapacity) {
     if (initialCapacity <= 0) throw new IllegalArgumentException("Cannot have initial capacity less than one");
+    head = 0;
     size = 0;
     arr = (T[]) new Object[initialCapacity];
   }
 
   public void enqueue(T item) {
-    enqueueItem(item);
-
-    if (size == getCapacity()) {
+    if (size == capacity()) {
       doubleCapacity();
     }
+
+    enqueueItem(item);
   }
 
   private void enqueueItem(T item) {
-    if (size >= 0) System.arraycopy(arr, 0, arr, 1, size);
-    arr[0] = item;
+    arr[tailIndex()] = item;
     size++;
+  }
+
+  private int tailIndex() {
+    return (head + size) % capacity();
   }
 
   public T dequeue() {
     T item = dequeueItem();
 
-    if (size < getCapacity() / 4) {
+    if (size() < capacity() / 4) {
       halveCapacity();
     }
 
@@ -39,24 +44,42 @@ public class Queue<T> implements Iterable<T> {
   }
 
   private T dequeueItem() {
-    if (size == 0) {
+    if (size() == 0) {
       throw new NoSuchElementException();
     }
 
-    T item = arr[--size];
-    arr[size] = null;
+    T item = arr[head];
+    arr[head] = null;
+
+    head = (head + 1) % capacity();
+
     return item;
   }
 
   private void doubleCapacity() {
-    arr = Arrays.copyOf(arr, getCapacity() * 2);
+    arr = getLeftShiftedArrayCopy(capacity() * 2);
+    head = 0;
   }
 
   private void halveCapacity() {
-    arr = Arrays.copyOf(arr, getCapacity() / 2);
+    arr = getLeftShiftedArrayCopy(capacity() / 2);
+    head = 0;
   }
 
-  private int getCapacity() {
+  private T[] getLeftShiftedArrayCopy(int capacity) {
+    if (capacity < size) {
+      throw new IllegalArgumentException("Target array must be large enough to contain all items");
+    }
+
+    T[] targetArray = (T[]) new Object[capacity() * 2];
+    for (int i = 0; i < size; i++) {
+      targetArray[i] = arr[(head + i) % capacity()];
+    }
+
+    return targetArray;
+  }
+
+  private int capacity() {
     return arr.length;
   }
 
@@ -73,14 +96,16 @@ public class Queue<T> implements Iterable<T> {
   }
 
   private class FifoIterator implements Iterator<T> {
-    int index = size - 1;
+    int headOffset = 0;
 
     public boolean hasNext() {
-      return index >= 0;
+      return headOffset < size;
     }
 
     public T next() {
-      return arr[index--];
+      T item = arr[(head + headOffset) % capacity()];
+      headOffset++;
+      return item;
     }
 
     public void remove() {
