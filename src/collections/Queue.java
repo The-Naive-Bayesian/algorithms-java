@@ -16,7 +16,7 @@ public class Queue<T> implements Iterable<T> {
   public void enqueue(T item) {
     enqueueItem(item);
 
-    if (size > 2 * getCapacity() / 3) {
+    if (size == getCapacity()) {
       doubleCapacity();
     }
   }

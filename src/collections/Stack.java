@@ -14,7 +14,7 @@ public class Stack<T> implements Iterable<T> {
   }
 
   public void push(T item) {
-    if (size > 2 * getCapacity() / 3) {
+    if (size == getCapacity()) {
       doubleCapacity();
     }
     pushItem(item);
