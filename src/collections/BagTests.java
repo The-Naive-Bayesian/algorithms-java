@@ -3,6 +3,8 @@ package collections;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -83,6 +85,26 @@ class BagTests {
       bag.add(0);
 
       assertFalse(bag.isEmpty());
+    }
+  }
+
+  @Nested
+  class Iterator {
+    @Test
+    void allowsForEach() {
+      Bag<Integer> bag = new Bag<>(10);
+
+      for (int i = 0; i < 8; i++) {
+        bag.add(i);
+      }
+
+      boolean[] seen = new boolean[8];
+      for (Integer number : bag) {
+        if (seen[number]) {
+          fail();
+        }
+        seen[number] = true;
+      }
     }
   }
 }
