@@ -1,10 +1,9 @@
 package collections.queue;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayQueue<T> implements Iterable<T> {
+public class ArrayQueue<T> implements Queue<T> {
   private int head;
   private int size;
   private T[] arr;
