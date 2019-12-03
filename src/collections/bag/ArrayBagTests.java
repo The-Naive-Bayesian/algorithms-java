@@ -1,26 +1,24 @@
-package collections;
+package collections.bag;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.Iterator;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class BagTests {
+class ArrayBagTests {
   @Nested
   class Constructor {
     @Test
     void doesntThrow() {
-      new Bag<Integer>(1);
+      new ArrayBag<Integer>(1);
     }
 
     @Test
     void throwsForZeroInitialCapacity() {
       assertThrows(
           IllegalArgumentException.class,
-          () -> new Bag<Integer>(0)
+          () -> new ArrayBag<Integer>(0)
       );
     }
 
@@ -28,13 +26,13 @@ class BagTests {
     void throwsForNegativeInitialCapacity() {
       assertThrows(
           IllegalArgumentException.class,
-          () -> new Bag<Integer>(-1)
+          () -> new ArrayBag<Integer>(-1)
       );
     }
 
     @Test
     void initialSizeIsZero() {
-      Bag bag = new Bag<Integer>(10);
+      ArrayBag bag = new ArrayBag<Integer>(10);
 
       assertEquals(0, bag.size());
     }
@@ -44,14 +42,14 @@ class BagTests {
   class Add {
     @Test
     void addDoesntThrow() {
-      Bag bag = new Bag<Integer>(10);
+      ArrayBag bag = new ArrayBag<Integer>(10);
 
       bag.add(1);
     }
 
     @Test
     void addIncreasesSize() {
-      Bag bag = new Bag<Integer>(10);
+      ArrayBag bag = new ArrayBag<Integer>(10);
 
       bag.add(1);
       assertEquals(1, bag.size());
@@ -61,7 +59,7 @@ class BagTests {
 
     @Test
     void addWorksAboveInitialCapacity() {
-      Bag bag = new Bag<Integer>(1);
+      ArrayBag bag = new ArrayBag<Integer>(1);
 
       bag.add(1);
       assertEquals(1, bag.size());
@@ -74,14 +72,14 @@ class BagTests {
   class IsEmpty {
     @Test
     void returnsTrueWhenEmpty() {
-      Bag bag = new Bag<Integer>(1);
+      ArrayBag bag = new ArrayBag<Integer>(1);
 
       assertTrue(bag.isEmpty());
     }
 
     @Test
     void returnsFalseWhenNotEmpty() {
-      Bag bag = new Bag<Integer>(1);
+      ArrayBag bag = new ArrayBag<Integer>(1);
       bag.add(0);
 
       assertFalse(bag.isEmpty());
@@ -92,7 +90,7 @@ class BagTests {
   class Iterator {
     @Test
     void allowsForEach() {
-      Bag<Integer> bag = new Bag<>(10);
+      ArrayBag<Integer> bag = new ArrayBag<>(10);
 
       for (int i = 0; i < 8; i++) {
         bag.add(i);

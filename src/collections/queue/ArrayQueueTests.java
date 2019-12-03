@@ -1,4 +1,4 @@
-package collections;
+package collections.queue;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -7,19 +7,19 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class QueueTests {
+class ArrayQueueTests {
   @Nested
   class Constructor {
     @Test
     void constructor() {
-      new Queue<Integer>(10);
+      new ArrayQueue<Integer>(10);
     }
 
     @Test
     void constructorThrowsForZeroInitialCapacity() {
       assertThrows(
           IllegalArgumentException.class,
-          () -> new Queue<Integer>(0)
+          () -> new ArrayQueue<Integer>(0)
       );
     }
 
@@ -27,13 +27,13 @@ class QueueTests {
     void constructorThrowsForNegativeInitialCapacity() {
       assertThrows(
           IllegalArgumentException.class,
-          () -> new Queue<Integer>(-1)
+          () -> new ArrayQueue<Integer>(-1)
       );
     }
 
     @Test
     void initialSizeIsZero() {
-      Queue queue = new Queue<Integer>(10);
+      ArrayQueue queue = new ArrayQueue<Integer>(10);
 
       assertEquals(0, queue.size());
     }
@@ -43,14 +43,14 @@ class QueueTests {
   class Enqueue {
     @Test
     void enqueueDoesntThrow() {
-      Queue queue = new Queue<Integer>(10);
+      ArrayQueue queue = new ArrayQueue<Integer>(10);
 
       queue.enqueue(1);
     }
 
     @Test
     void enqueueIncreasesSize() {
-      Queue queue = new Queue<Integer>(10);
+      ArrayQueue queue = new ArrayQueue<Integer>(10);
 
       queue.enqueue(1);
       assertEquals(1, queue.size());
@@ -60,7 +60,7 @@ class QueueTests {
 
     @Test
     void enqueueWorksAboveInitialCapacity() {
-      Queue queue = new Queue<Integer>(1);
+      ArrayQueue queue = new ArrayQueue<Integer>(1);
 
       queue.enqueue(1);
       assertEquals(1, queue.size());
@@ -73,14 +73,14 @@ class QueueTests {
   class Dequeue {
     @Test
     void throwsWhileEmpty() {
-      Queue queue = new Queue<Integer>(10);
+      ArrayQueue queue = new ArrayQueue<Integer>(10);
 
       assertThrows(NoSuchElementException.class, queue::dequeue);
     }
 
     @Test
     void returnsFirstAddedValue() {
-      Queue queue = new Queue<Integer>(10);
+      ArrayQueue queue = new ArrayQueue<Integer>(10);
       queue.enqueue(1);
       queue.enqueue(2);
 
@@ -89,7 +89,7 @@ class QueueTests {
 
     @Test
     void increasesSize() {
-      Queue queue = new Queue<Integer>(10);
+      ArrayQueue queue = new ArrayQueue<Integer>(10);
 
       queue.enqueue(1);
       assertEquals(1, queue.size());
@@ -99,7 +99,7 @@ class QueueTests {
 
     @Test
     void worksWhenEmptyingQueue() {
-      Queue queue = new Queue<Integer>(1);
+      ArrayQueue queue = new ArrayQueue<Integer>(1);
 
       int maxSize = 8;
       for (int i = 0; i < maxSize; i++) {
@@ -116,14 +116,14 @@ class QueueTests {
   class IsEmpty {
     @Test
     void returnsTrueWhenEmpty() {
-      Queue queue = new Queue<Integer>(1);
+      ArrayQueue queue = new ArrayQueue<Integer>(1);
 
       assertTrue(queue.isEmpty());
     }
 
     @Test
     void returnsFalseWhenNotEmpty() {
-      Queue queue = new Queue<Integer>(1);
+      ArrayQueue queue = new ArrayQueue<Integer>(1);
       queue.enqueue(0);
 
       assertFalse(queue.isEmpty());
@@ -134,7 +134,7 @@ class QueueTests {
   class Iterator {
     @Test
     void allowsForEach() {
-      Queue<Integer> queue = new Queue<>(10);
+      ArrayQueue<Integer> queue = new ArrayQueue<>(10);
 
       Integer[] expectedValues = new Integer[8];
       for (int i = 0; i < 8; i++) {

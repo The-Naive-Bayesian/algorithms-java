@@ -1,13 +1,13 @@
-package collections;
+package collections.bag;
 
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class Bag<T> implements Iterable<T> {
+public class ArrayBag<T> implements Iterable<T> {
   private int size;
   private T[] arr;
 
-  public Bag(int initialCapacity) throws IllegalArgumentException {
+  public ArrayBag(int initialCapacity) throws IllegalArgumentException {
     if (initialCapacity <= 0) throw new IllegalArgumentException("Cannot have initial capacity less than one");
     size = 0;
     arr = (T[]) new Object[initialCapacity];

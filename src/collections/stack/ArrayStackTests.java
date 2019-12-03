@@ -1,4 +1,4 @@
-package collections;
+package collections.stack;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -7,19 +7,19 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StackTests {
+class ArrayStackTests {
   @Nested
   class Constructor {
     @Test
     void constructor() {
-      new Stack<Integer>(10);
+      new ArrayStack<Integer>(10);
     }
 
     @Test
     void constructorThrowsForZeroInitialCapacity() {
       assertThrows(
           IllegalArgumentException.class,
-          () -> new Stack<Integer>(0)
+          () -> new ArrayStack<Integer>(0)
       );
     }
 
@@ -27,13 +27,13 @@ class StackTests {
     void constructorThrowsForNegativeInitialCapacity() {
       assertThrows(
           IllegalArgumentException.class,
-          () -> new Stack<Integer>(-1)
+          () -> new ArrayStack<Integer>(-1)
       );
     }
 
     @Test
     void initialSizeIsZero() {
-      Stack stack = new Stack<Integer>(10);
+      ArrayStack stack = new ArrayStack<Integer>(10);
 
       assertEquals(0, stack.size());
     }
@@ -43,14 +43,14 @@ class StackTests {
   class Push {
     @Test
     void pushDoesntThrow() {
-      Stack stack = new Stack<Integer>(10);
+      ArrayStack stack = new ArrayStack<Integer>(10);
 
       stack.push(1);
     }
 
     @Test
     void pushIncreasesSize() {
-      Stack stack = new Stack<Integer>(10);
+      ArrayStack stack = new ArrayStack<Integer>(10);
 
       stack.push(1);
       assertEquals(1, stack.size());
@@ -60,7 +60,7 @@ class StackTests {
 
     @Test
     void pushWorksAboveInitialCapacity() {
-      Stack stack = new Stack<Integer>(1);
+      ArrayStack stack = new ArrayStack<Integer>(1);
 
       stack.push(1);
       assertEquals(1, stack.size());
@@ -73,14 +73,14 @@ class StackTests {
   class Pop {
     @Test
     void throwsWhileEmpty() {
-      Stack stack = new Stack<Integer>(10);
+      ArrayStack stack = new ArrayStack<Integer>(10);
 
       assertThrows(NoSuchElementException.class, stack::pop);
     }
 
     @Test
     void returnsMostRecentlyAddedValue() {
-      Stack stack = new Stack<Integer>(10);
+      ArrayStack stack = new ArrayStack<Integer>(10);
       stack.push(1);
       stack.push(2);
 
@@ -89,7 +89,7 @@ class StackTests {
 
     @Test
     void increasesSize() {
-      Stack stack = new Stack<Integer>(10);
+      ArrayStack stack = new ArrayStack<Integer>(10);
 
       stack.push(1);
       assertEquals(1, stack.size());
@@ -99,7 +99,7 @@ class StackTests {
 
     @Test
     void worksWhenEmptyingStack() {
-      Stack stack = new Stack<Integer>(1);
+      ArrayStack stack = new ArrayStack<Integer>(1);
 
       int maxSize = 8;
       for (int i = 0; i < maxSize; i++) {
@@ -116,14 +116,14 @@ class StackTests {
   class IsEmpty {
     @Test
     void returnsTrueWhenEmpty() {
-      Stack stack = new Stack<Integer>(1);
+      ArrayStack stack = new ArrayStack<Integer>(1);
 
       assertTrue(stack.isEmpty());
     }
 
     @Test
     void returnsFalseWhenNotEmpty() {
-      Stack stack = new Stack<Integer>(1);
+      ArrayStack stack = new ArrayStack<Integer>(1);
       stack.push(0);
 
       assertFalse(stack.isEmpty());
@@ -134,7 +134,7 @@ class StackTests {
   class Iterator {
     @Test
     void allowsForEach() {
-      Stack<Integer> stack = new Stack<>(10);
+      ArrayStack<Integer> stack = new ArrayStack<>(10);
 
       Integer[] expectedValues = new Integer[8];
       for (int i = 0; i < 8; i++) {

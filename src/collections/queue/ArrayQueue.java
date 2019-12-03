@@ -1,15 +1,15 @@
-package collections;
+package collections.queue;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Queue<T> implements Iterable<T> {
+public class ArrayQueue<T> implements Iterable<T> {
   private int head;
   private int size;
   private T[] arr;
 
-  public Queue(int initialCapacity) {
+  public ArrayQueue(int initialCapacity) {
     if (initialCapacity <= 0) throw new IllegalArgumentException("Cannot have initial capacity less than one");
     head = 0;
     size = 0;

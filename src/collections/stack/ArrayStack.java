@@ -1,14 +1,14 @@
-package collections;
+package collections.stack;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Stack<T> implements Iterable<T> {
+public class ArrayStack<T> implements Iterable<T> {
   private int size;
   private T[] arr;
 
-  public Stack(int initialCapacity) {
+  public ArrayStack(int initialCapacity) {
     if (initialCapacity <= 0) throw new IllegalArgumentException("Cannot have initial capacity less than one");
     size = 0;
     arr = (T[]) new Object[initialCapacity];
