@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayStack<T> implements Iterable<T> {
+public class ArrayStack<T> implements Stack<T> {
   private int size;
   private T[] arr;
 
