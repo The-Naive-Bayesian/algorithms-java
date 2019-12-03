@@ -3,7 +3,7 @@ package collections.bag;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class ArrayBag<T> implements Iterable<T> {
+public class ArrayBag<T> implements Bag<T> {
   private int size;
   private T[] arr;
 
