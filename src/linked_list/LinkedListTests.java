@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkedListTests {
   @Nested
@@ -122,6 +121,26 @@ public class LinkedListTests {
       assertEquals(2, list.removeFirst());
       assertEquals(1, list.removeFirst());
       assertEquals(3, list.removeFirst());
+    }
+  }
+
+  @Test
+  void itAllowsIteration() {
+    LinkedList<Integer> list = new LinkedList<>();
+
+    list.addToEnd(0);
+    list.addToEnd(1);
+    list.addToEnd(2);
+
+    boolean[] visited = {false, false, false};
+    for(int n : list) {
+      visited[n] = true;
+    }
+
+    int index = 0;
+    for (boolean item : visited) {
+      if (!item) fail("Iterator failed to visit item " + index + " of [0, 1, 2]");
+      index++;
     }
   }
 }

@@ -1,12 +1,13 @@
 package linked_list;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<T> {
+public class LinkedList<T> implements Iterable<T> {
   private Node first;
   private Node last;
 
-  LinkedList() {
+  public LinkedList() {
     first = null;
     last = null;
   }
@@ -54,11 +55,42 @@ public class LinkedList<T> {
     return oldFirst.getItem();
   }
 
+  public Node getFirst() {
+    return first;
+  }
+
   private Node popFirst() {
     Node oldFirst = first;
     first = oldFirst.getNext();
 
     return oldFirst;
+  }
+
+  @Override
+  public Iterator<T> iterator() {
+    return new LinkedListIterator();
+  }
+
+  private class LinkedListIterator implements Iterator<T> {
+    Node currentNode;
+
+    LinkedListIterator() {
+      currentNode = first;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return currentNode != null;
+    }
+
+    @Override
+    public T next() {
+      T item = currentNode.getItem();
+
+      currentNode = currentNode.getNext();
+
+      return item;
+    }
   }
 
   private class Node {
