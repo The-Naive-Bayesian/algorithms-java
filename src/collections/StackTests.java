@@ -15,7 +15,7 @@ public class StackTests {
   }
 
   @Test
-  void itEnstacksWithoutError() {
+  void itPushesWithoutError() {
     stack.push(1);
   }
 
@@ -25,7 +25,7 @@ public class StackTests {
   }
 
   @Test
-  void itIsNotEmptyAfterEnqueuingItem() {
+  void itIsNotEmptyAfterPushingItem() {
     stack.push(0);
     assertFalse(stack.isEmpty());
   }
@@ -40,7 +40,7 @@ public class StackTests {
   }
 
   @Test
-  void itDestacksLIFO() {
+  void itPopsLIFO() {
     stack.push(3);
     stack.push(4);
 
