@@ -3,7 +3,7 @@ package collections;
 import java.util.Iterator;
 
 public class Stack<T> implements Iterable<T> {
-  void push() {
+  void push(T item) {
 
   }
 
