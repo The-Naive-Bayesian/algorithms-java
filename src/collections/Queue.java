@@ -1,6 +1,8 @@
 package collections;
 
-public class Queue<T> {
+import java.util.Iterator;
+
+public class Queue<T> implements Iterable<T> {
   void enqueue(T item) {
 
   }
@@ -15,5 +17,10 @@ public class Queue<T> {
 
   int size() {
     return 0;
+  }
+
+  @Override
+  public Iterator<T> iterator() {
+    return null;
   }
 }

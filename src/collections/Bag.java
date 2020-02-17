@@ -1,6 +1,8 @@
 package collections;
 
-public class Bag<T> {
+import java.util.Iterator;
+
+public class Bag<T> implements Iterable<T> {
   void add(T item) {}
 
   boolean isEmpty() {
@@ -9,5 +11,10 @@ public class Bag<T> {
 
   int size() {
     return 0;
+  }
+
+  @Override
+  public Iterator<T> iterator() {
+    return null;
   }
 }

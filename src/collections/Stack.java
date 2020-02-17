@@ -1,6 +1,8 @@
 package collections;
 
-public class Stack<T> {
+import java.util.Iterator;
+
+public class Stack<T> implements Iterable<T> {
   void push() {
 
   }
@@ -15,5 +17,10 @@ public class Stack<T> {
 
   int size() {
     return 0;
+  }
+
+  @Override
+  public Iterator<T> iterator() {
+    return null;
   }
 }
