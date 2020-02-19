@@ -3,20 +3,26 @@ package collections;
 import java.util.Iterator;
 
 public class Queue<T> implements Iterable<T> {
-  void enqueue(T item) {
+  LinkedList<T> linkedList;
 
+  Queue() {
+    linkedList = new LinkedList();
+  }
+
+  void enqueue(T item) {
+    linkedList.insertLast(item);
   }
 
   T dequeue() {
-    return null;
+    return linkedList.removeFirst();
   }
 
   boolean isEmpty() {
-    return true;
+    return linkedList.isEmpty();
   }
 
   int size() {
-    return 0;
+    return linkedList.size();
   }
 
   @Override
