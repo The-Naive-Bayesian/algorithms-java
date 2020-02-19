@@ -3,14 +3,22 @@ package collections;
 import java.util.Iterator;
 
 public class Bag<T> implements Iterable<T> {
-  void add(T item) {}
+  private LinkedList<T> linkedList;
+
+  Bag() {
+    linkedList = new LinkedList<>();
+  }
+
+  void add(T item) {
+    linkedList.insertFirst(item);
+  }
 
   boolean isEmpty() {
-    return true;
+    return linkedList.isEmpty();
   }
 
   int size() {
-    return 0;
+    return linkedList.size();
   }
 
   @Override

@@ -3,10 +3,10 @@ package collections;
 import java.util.Iterator;
 
 public class Queue<T> implements Iterable<T> {
-  LinkedList<T> linkedList;
+  private LinkedList<T> linkedList;
 
   Queue() {
-    linkedList = new LinkedList();
+    linkedList = new LinkedList<>();
   }
 
   void enqueue(T item) {
