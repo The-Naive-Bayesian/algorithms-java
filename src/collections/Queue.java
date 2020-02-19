@@ -27,6 +27,6 @@ public class Queue<T> implements Iterable<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return null;
+    return linkedList.iterator();
   }
 }

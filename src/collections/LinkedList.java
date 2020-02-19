@@ -1,6 +1,8 @@
 package collections;
 
-public class LinkedList<T> {
+import java.util.Iterator;
+
+public class LinkedList<T> implements Iterable<T> {
   private Node first;
   private Node last;
 
@@ -53,6 +55,33 @@ public class LinkedList<T> {
     }
 
     return count;
+  }
+
+  @Override
+  public Iterator<T> iterator() {
+    return null;
+  }
+
+  private class LinkedListIterator implements Iterator<T> {
+    Node currentNode;
+
+
+    LinkedListIterator(LinkedList<T> linkedList) {
+      currentNode = linkedList.first;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return currentNode != null && currentNode.next != null;
+    }
+
+    @Override
+    public T next() {
+      T item = currentNode.item;
+      currentNode = currentNode.next;
+
+      return item;
+    }
   }
 
   private class Node {

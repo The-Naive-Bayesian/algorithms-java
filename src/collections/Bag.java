@@ -23,6 +23,6 @@ public class Bag<T> implements Iterable<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return null;
+    return linkedList.iterator();
   }
 }
