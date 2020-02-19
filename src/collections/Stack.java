@@ -3,20 +3,26 @@ package collections;
 import java.util.Iterator;
 
 public class Stack<T> implements Iterable<T> {
-  void push(T item) {
+  private LinkedList<T> linkedList;
 
+  Stack() {
+    linkedList = new LinkedList<>();
+  }
+
+  void push(T item) {
+    linkedList.insertFirst(item);
   }
 
   T pop() {
-    return null;
+      return linkedList.removeFirst();
   }
 
   boolean isEmpty() {
-    return true;
+    return linkedList.isEmpty();
   }
 
   int size() {
-    return 0;
+    return linkedList.size();
   }
 
   @Override
