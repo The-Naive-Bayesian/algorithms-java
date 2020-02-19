@@ -59,7 +59,7 @@ public class LinkedList<T> implements Iterable<T> {
 
   @Override
   public Iterator<T> iterator() {
-    return null;
+    return new LinkedListIterator(this);
   }
 
   private class LinkedListIterator implements Iterator<T> {
@@ -72,7 +72,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     @Override
     public boolean hasNext() {
-      return currentNode != null && currentNode.next != null;
+      return currentNode != null;
     }
 
     @Override

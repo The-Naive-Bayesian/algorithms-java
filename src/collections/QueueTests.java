@@ -47,4 +47,18 @@ public class QueueTests {
     assertEquals(queue.dequeue(), 3);
     assertEquals(queue.dequeue(), 4);
   }
+
+  @Test
+  void itIterates() {
+    int[] values = {3, 4};
+
+    queue.enqueue(values[0]);
+    queue.enqueue(values[1]);
+
+    int i = 0;
+    for (Integer value : queue) {
+      assertEquals(values[i++], value);
+    }
+    assertEquals(values.length, i);
+  }
 }

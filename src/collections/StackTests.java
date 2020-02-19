@@ -48,4 +48,18 @@ public class StackTests {
     assertEquals(stack.pop(), 3);
   }
 
+  @Test
+  void itIterates() {
+    int[] values = {3, 4};
+
+    stack.push(values[0]);
+    stack.push(values[1]);
+
+    int i = values.length;
+    for (Integer value : stack) {
+      assertEquals(values[--i], value);
+    }
+    assertEquals(0, i);
+  }
+
 }
