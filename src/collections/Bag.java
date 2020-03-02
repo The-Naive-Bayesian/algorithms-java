@@ -3,10 +3,10 @@ package collections;
 import java.util.Iterator;
 
 public class Bag<T> implements Iterable<T> {
-  private LinkedList<T> linkedList;
+  private LinkedListWithLastLink<T> linkedList;
 
   Bag() {
-    linkedList = new LinkedList<>();
+    linkedList = new LinkedListWithLastLink<>();
   }
 
   void add(T item) {

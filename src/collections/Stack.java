@@ -3,10 +3,10 @@ package collections;
 import java.util.Iterator;
 
 public class Stack<T> implements Iterable<T> {
-  private LinkedList<T> linkedList;
+  private LinkedListWithLastLink<T> linkedList;
 
   Stack() {
-    linkedList = new LinkedList<>();
+    linkedList = new LinkedListWithLastLink<>();
   }
 
   void push(T item) {

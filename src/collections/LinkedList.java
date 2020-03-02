@@ -3,49 +3,76 @@ package collections;
 import java.util.Iterator;
 
 public class LinkedList<T> implements Iterable<T> {
-  private Node first;
-  private Node last;
+  private Node<T> first;
 
-  void insertFirst(T item) {
-    Node newNode = new Node(item);
+  public Node<T> getFirst() {
+    return first;
+  }
+
+  public void insertFirst(T item) {
+    Node<T> newNode = new Node<>(item);
 
     if (first == null) {
       first = newNode;
-      last = newNode;
     } else {
       newNode.next = first;
       first = newNode;
     }
   }
 
-  void insertLast(T item) {
-    Node newNode = new Node(item);
-
-    if (last == null) {
-      first = newNode;
-      last = newNode;
-    } else {
-      last.next = newNode;
-      last = newNode;
-    }
-  }
-
-  T removeFirst() {
+  public T removeFirst() {
     if (first == null) return null;
 
     T item = first.item;
     first = first.next;
 
-    if (first == null) last = null;
-
     return item;
   }
 
-  boolean isEmpty() {
+  // Problem 1.3.19
+  T removeLast() {
+    if (first == null) return null;
+
+    Node<T> current = first;
+    Node<T> prev = first;
+
+    while (current.next != null) {
+      prev = current;
+      current = current.next;
+    }
+
+    T returnValue = current.item;
+    prev.next = null;
+
+    return returnValue;
+  }
+
+  // Problem 1.3.20
+  public void delete(int index) {
+    if (first == null) return;
+    if (index == 0) {
+      first = first.next;
+      return;
+    }
+
+    Node current = first;
+    Node prev = first;
+
+    int i = 0;
+    while (i < index && current.next != null) {
+      prev = current;
+      current = current.next;
+      i++;
+    }
+
+    prev.next = current.next;
+  }
+
+  public boolean isEmpty() {
     return first == null;
   }
 
-  int size() {
+  public int size() {
     int count = 0;
     Node currentNode = first;
 
@@ -63,7 +90,7 @@ public class LinkedList<T> implements Iterable<T> {
   }
 
   private class LinkedListIterator implements Iterator<T> {
-    Node currentNode;
+    Node<T> currentNode;
 
 
     LinkedListIterator(LinkedList<T> linkedList) {
@@ -81,15 +108,6 @@ public class LinkedList<T> implements Iterable<T> {
       currentNode = currentNode.next;
 
       return item;
-    }
-  }
-
-  private class Node {
-    T item;
-    Node next;
-
-    Node(T item) {
-      this.item = item;
     }
   }
 }
